@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Azure Cloud Readiness Assessment | ZainTECH</title>
+  <meta name="description" content="Azure Cloud Readiness Assessment by ZainTECH — CAF-aligned readiness, roadmap, and Azure Accelerate positioning." />
+
+  <style>
+    :root{
+      --z-primary: #2B5AA8;
+      --z-primary-2:#1F3F7A;
+      --z-accent:  #A5DF37;
+
+      --bg:#F6F8FC;
+      --card:#FFFFFF;
+      --text:#0B1220;
+      --muted:#556175;
+      --border: rgba(11,18,32,.10);
+      --shadow: 0 16px 40px rgba(2,6,23,.10);
+
+      --radius: 18px;
+      --max: 1040px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      --h1: clamp(2.05rem, 4vw, 2.9rem);
+      --h2: 1.35rem;
+      --h3: 1.05rem;
+      --p: 1rem;
+      --s: .92rem;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--font);
+      color:var(--text);
+      line-height:1.55;
+      background:
+        radial-gradient(900px 520px at 12% 0%, rgba(43,90,168,.12), transparent 60%),
+        radial-gradient(900px 520px at 88% 10%, rgba(165,223,55,.10), transparent 55%),
+        var(--bg);
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    header{
+      position:sticky; top:0; z-index:30;
+      background: rgba(255,255,255);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap:14px;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{height:28px; width:auto}
+    nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+      font-size: .92rem;
+      color: var(--muted);
+    }
+    nav a{padding:8px 10px; border-radius: 10px;}
+    nav a:hover{background: rgba(43,90,168,.07); color: var(--text);}
+    @media (max-width: 920px){ nav{display:none} }
+
+    section{padding: 34px 0}
+    .sectionHead{text-align:center; margin-bottom: 16px;}
+    .sectionHead h2{margin:0; font-size: var(--h2); letter-spacing: -0.01em;}
+    .sectionHead p{margin:8px auto 0; color: var(--muted); max-width: 76ch; font-size: var(--p);}
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .pad{padding: 22px}
+    .pad-lg{padding: 26px}
+
+    /* HERO */
+    .hero{padding: 40px 0 18px}
+    .heroCard{position:relative; overflow:hidden}
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(760px 260px at 15% 12%, rgba(43,90,168,.16), transparent 60%),
+        radial-gradient(680px 240px at 82% 30%, rgba(165,223,55,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .heroInner{position:relative; z-index:2}
+    .heroTopRow{
+      display:flex; align-items:flex-start; justify-content: space-between;
+      gap: 18px; flex-wrap: wrap;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius: 999px;
+      background: rgba(43,90,168,.08);
+      border: 1px solid rgba(43,90,168,.14);
+      color: var(--z-primary);
+      font-weight: 700;
+      font-size: .92rem;
+    }
+    h1{
+      margin: 12px 0 8px;
+      font-size: var(--h1);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+    .sub{margin:0; color: var(--muted); font-size: var(--p); max-width: 75ch;}
+    .msBig{display:flex; align-items:flex-start; justify-content:flex-end; flex: 0 0 auto; margin-top: 4px;}
+    .msBig img{
+      height: 56px;
+      width: auto;
+      opacity: .96;
+      filter: drop-shadow(0 10px 18px rgba(2,6,23,.10));
+    }
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px;}
+    .chip{
+      font-size: var(--s);
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.65);
+    }
+
+    /* Grids */
+    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap: 14px;}
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px;}
+    @media (max-width: 920px){
+      .grid2,.grid3{grid-template-columns:1fr}
+    }
+
+    /* Icon items */
+    .item{
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      background: #fff;
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .ico{
+      width: 34px; height: 34px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.8);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+    }
+    .ico svg{
+      width: 18px;
+      height: 18px;
+      stroke: #0B1220;
+      stroke-width: 1.6;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .itemBody{min-width:0}
+    .item h3{margin: 0 0 6px; font-size: var(--h3); letter-spacing: -0.01em;}
+    .item p{ margin:0; color: var(--muted); font-size: var(--p); }
+
+    .list{margin: 10px 0 0; padding: 0 0 0 18px; font-size: var(--p);}
+    .list li{ margin: 8px 0; }
+    .list li span{ color: var(--muted); }
+
+    /* CAF image block */
+    .caf img{border-radius: 16px; border: 1px solid var(--border); background: #fff;}
+    .caption{color: var(--muted); font-size: .85rem; text-align:center; margin-top: 8px;}
+
+    /* Timeline */
+    .timeline{display:grid; gap: 10px;}
+    .step{
+      display:flex;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: #fff;
+      align-items:flex-start;
+    }
+    .num{
+      width: 34px; height: 34px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, var(--z-primary), var(--z-primary-2));
+      color:#fff;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+    .step b{display:block; font-size: var(--p); margin-top: 1px;}
+    .step span{display:block; color: var(--muted); font-size: var(--p); margin-top: 4px;}
+
+    /* Accelerate highlight */
+    .highlight{
+      border: 1px solid rgba(165,223,55,.35);
+      background:
+        radial-gradient(680px 220px at 18% 30%, rgba(165,223,55,.16), transparent 62%),
+        #fff;
+    }
+    .tag{
+      display:inline-flex; gap:8px; align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(165,223,55,.16);
+      border: 1px solid rgba(165,223,55,.28);
+      color:#2A3B12;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    /* Form at end */
+    .form{
+      display:grid;
+      gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .row2{display:grid; grid-template-columns: 1fr 1fr; gap: 12px;}
+    @media (max-width: 760px){ .row2{grid-template-columns:1fr} }
+
+    label{display:block; font-size: .9rem; font-weight: 700; margin-bottom: 6px; color: #22304a;}
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-family: var(--font);
+      font-size: var(--p);
+      outline: none;
+      transition: box-shadow .12s ease, border-color .12s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(43,90,168,.45);
+      box-shadow: 0 0 0 4px rgba(43,90,168,.12);
+    }
+    textarea{min-height: 110px; resize: vertical;}
+    .consent{
+      display:flex; gap:10px; align-items:flex-start;
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: 4px;
+    }
+    .consent input{width:18px; height:18px; margin-top: 2px;}
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top: 6px;}
+    .btn{
+      border:0; cursor:pointer;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-family: var(--font);
+      font-size: var(--p);
+      transition: transform .12s ease, box-shadow .12s ease;
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btnPrimary{
+      color:#fff;
+      background: linear-gradient(135deg, var(--z-primary), var(--z-primary-2));
+      box-shadow: 0 14px 26px rgba(43,90,168,.22);
+    }
+    .btnGhost{
+      background:#fff;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    footer{padding: 26px 0 46px; color: var(--muted); font-size: .9rem;}
+    .foot{
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="top">
+        <div class="brand">
+          <img src="https://kuwaittimes.com/kuwaittimes/uploads/images/2025/07/13/270642.jpg" alt="ZainTECH" />
+        </div>
+        <nav aria-label="Page navigation">
+          <a href="#overview">Overview</a>
+          <a href="#benefits">Key benefits</a>
+          <a href="#challenges">Challenges</a>
+          <a href="#scope">Scope</a>
+          <a href="#accelerate">Azure Accelerate</a>
+          <a href="#deliverables">Deliverables</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / OVERVIEW -->
+    <section class="hero" id="overview">
+      <div class="wrap">
+        <div class="card heroCard pad-lg">
+          <div class="heroInner">
+            <div class="heroTopRow">
+              <div class="kicker">Azure Cloud Readiness Assessment</div>
+
+              <div class="msBig" aria-label="Microsoft">
+                <img
+                  src="https://learn.microsoft.com/en-us/entra/identity-platform/media/howto-add-branding-in-apps/ms-symbollockup_mssymbol_19.svg"
+                  alt="Microsoft"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <h1>Accelerate your Azure adoption with confidence and a clear roadmap</h1>
+            <p class="sub">
+              The Azure Cloud Readiness Assessment is a structured engagement designed to evaluate your readiness to migrate workloads
+              to Microsoft Azure. We assess infrastructure, applications, databases, security, and governance to identify migration
+              opportunities, risks, and dependencies. Aligned with the Microsoft Cloud Adoption Framework (CAF), the assessment delivers
+              a clear, actionable roadmap that enables informed decision-making and reduces migration risk before execution.
+            </p>
+
+            <div class="chips" aria-label="Quick highlights">
+              <span class="chip">CAF aligned</span>
+              <span class="chip">2–4 weeks</span>
+              <span class="chip">Azure Migrate + workshops</span>
+              <span class="chip">Executive-ready outputs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY BENEFITS (with thin-line black icons) -->
+    <section id="benefits">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Key benefits</h2>
+          <p>Clear outcomes that help you plan, secure buy-in, and reduce delivery risk.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- speedometer -->
+              <svg viewBox="0 0 24 24">
+                <path d="M6.8 18.5a8.5 8.5 0 1 1 10.4 0" />
+                <path d="M12 13l3.8-3.8" />
+                <path d="M12 18.5h.01" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Faster decisions</h3>
+              <p>Executive-ready findings and a roadmap to align stakeholders and accelerate approvals.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- shield-check -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3l8 4v6c0 5-3 9-8 10C7 21 4 17 4 13V7l8-4z" />
+                <path d="M9 13l2 2l4-5" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Lower migration risk</h3>
+              <p>Early visibility into dependencies, constraints, and risks—before execution begins.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- receipt / cost -->
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3h10v18l-2-1l-2 1l-2-1l-2 1l-2-1l-2 1V3z" />
+                <path d="M9 8h6" />
+                <path d="M9 12h6" />
+                <path d="M9 16h4" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Cost clarity</h3>
+              <p>High-level Azure cost estimation and TCO inputs to support budgeting and planning.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMON MIGRATION CHALLENGES (with thin-line black icons) -->
+    <section id="challenges">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Common migration challenges & how we help</h2>
+          <p>Typical blockers we see in large environments—and what the assessment addresses.</p>
+        </div>
+
+        <div class="grid2">
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- boxes / inventory -->
+              <svg viewBox="0 0 24 24">
+                <path d="M4 7l8-4l8 4l-8 4l-8-4z" />
+                <path d="M4 7v10l8 4v-10" />
+                <path d="M20 7v10l-8 4" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Unclear inventory and ownership</h3>
+              <p>We validate workload inventory and align owners through workshops and structured data collection.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- network / dependencies -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 6a2 2 0 1 0 0-4a2 2 0 0 0 0 4z" />
+                <path d="M6 22a2 2 0 1 0 0-4a2 2 0 0 0 0 4z" />
+                <path d="M18 22a2 2 0 1 0 0-4a2 2 0 0 0 0 4z" />
+                <path d="M12 6v6" />
+                <path d="M12 12l-6 6" />
+                <path d="M12 12l6 6" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Hidden dependencies</h3>
+              <p>We identify workload dependencies using Azure Migrate and SME interviews to reduce surprises.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- lock / governance -->
+              <svg viewBox="0 0 24 24">
+                <path d="M7 11V8a5 5 0 0 1 10 0v3" />
+                <path d="M6 11h12v10H6z" />
+                <path d="M12 16v2" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Security and governance uncertainty</h3>
+              <p>We define baseline security and governance readiness aligned to CAF and landing zone principles.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- calculator -->
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3h10v18H7z" />
+                <path d="M9 7h6" />
+                <path d="M9 11h2" />
+                <path d="M13 11h2" />
+                <path d="M9 15h2" />
+                <path d="M13 15h2" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Cost and sizing doubts</h3>
+              <p>We provide a directional cost estimate and planning assumptions to guide budget confidence.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- roadmap -->
+              <svg viewBox="0 0 24 24">
+                <path d="M6 4v16" />
+                <path d="M6 6h6l2 2h6v6h-6l-2-2H6" />
+                <path d="M6 18h10" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Prioritization and wave planning</h3>
+              <p>We recommend a phased roadmap with priorities based on risk, value, and technical constraints.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- users -->
+              <svg viewBox="0 0 24 24">
+                <path d="M16 11a3 3 0 1 0-6 0a3 3 0 0 0 6 0z" />
+                <path d="M6 20a6 6 0 0 1 12 0" />
+                <path d="M8 8a2.5 2.5 0 1 0-5 0a2.5 2.5 0 0 0 5 0z" />
+                <path d="M1.5 20a5.5 5.5 0 0 1 7-4" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Stakeholder alignment</h3>
+              <p>We deliver an executive presentation to align IT and business on scope, approach, and next steps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCOPE & COVERAGE (+ CAF IMAGE) -->
+    <section id="scope">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Scope & coverage</h2>
+          <p>Assessment domains, CAF alignment, and the discovery approach used to build the roadmap.</p>
+        </div>
+
+        <div class="card pad">
+          <div class="grid2">
+            <div class="item" style="align-items:flex-start;">
+              <div class="ico" aria-hidden="true">
+                <!-- layers -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3l9 5l-9 5l-9-5l9-5z" />
+                  <path d="M3 12l9 5l9-5" />
+                  <path d="M3 16l9 5l9-5" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Assessment domains</h3>
+                <ul class="list">
+                  <li>Infrastructure <span>(compute, storage, networking)</span></li>
+                  <li>Applications <span>and dependencies</span></li>
+                  <li>Databases <span>and data platforms</span></li>
+                  <li>Security <span>and identity posture</span></li>
+                  <li>Governance <span>and operational readiness</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item" style="align-items:flex-start;">
+              <div class="ico" aria-hidden="true">
+                <!-- search -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M10.5 18a7.5 7.5 0 1 1 0-15a7.5 7.5 0 0 1 0 15z" />
+                  <path d="M21 21l-4.2-4.2" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Discovery approach</h3>
+                <ul class="list">
+                  <li>Azure Migrate–based discovery</li>
+                  <li>Structured questionnaires and workshops</li>
+                  <li>Stakeholder and SME interviews</li>
+                  <li>Hybrid delivery model <span>(remote with optional onsite sessions)</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px" class="caf">
+            <div class="item" style="padding:14px; align-items:flex-start;">
+              <div class="ico" aria-hidden="true">
+                <!-- framework -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 6h16v12H4z" />
+                  <path d="M8 10h8" />
+                  <path d="M8 14h8" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3 style="margin:0 0 10px;">Framework alignment</h3>
+                <img
+                  src="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/caf-overview.png"
+                  alt="Microsoft Cloud Adoption Framework phases"
+                  loading="lazy"
+                />
+                <div class="caption">Microsoft Cloud Adoption Framework (CAF) overview</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- AZURE ACCELERATE -->
+    <section id="accelerate">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Azure Accelerate Program</h2>
+          <p>Where eligible, this assessment can be delivered under Microsoft Azure Accelerate to reduce upfront cost and speed adoption.</p>
+        </div>
+
+        <div class="card pad highlight">
+          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:12px;">
+            <span class="tag">Microsoft-funded / co-funded assessment</span>
+            <span class="tag">Microsoft guidance & best practices</span>
+            <span class="tag">Path to funded execution</span>
+          </div>
+
+          <div class="grid3">
+            <div class="item">
+              <div class="ico" aria-hidden="true">
+                <!-- badge -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2l3 6l7 1l-5 5l1 7l-6-3l-6 3l1-7l-5-5l7-1l3-6z" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Program highlights</h3>
+                <ul class="list">
+                  <li>Microsoft-funded or co-funded engagement</li>
+                  <li>Access to Microsoft technical guidance</li>
+                  <li>Alignment with migration and modernization initiatives</li>
+                  <li>Reduced financial barriers to start</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="ico" aria-hidden="true">
+                <!-- lightning -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M13 2L3 14h7l-1 8l10-12h-7l1-8z" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Customer value</h3>
+                <ul class="list">
+                  <li>Faster time-to-value on Azure</li>
+                  <li>Lower initial investment for readiness</li>
+                  <li>Confidence in Microsoft-aligned approach</li>
+                  <li>Clear route from assessment to execution</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="ico" aria-hidden="true">
+                <!-- info -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 22a10 10 0 1 0 0-20a10 10 0 0 0 0 20z" />
+                  <path d="M12 10v6" />
+                  <path d="M12 7h.01" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Note</h3>
+                <p>Eligibility and funding availability are subject to Microsoft approval.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section id="deliverables">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>What we deliver</h2>
+          <p>Practical outputs you can use immediately for planning, funding, and migration execution readiness.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- clipboard -->
+              <svg viewBox="0 0 24 24">
+                <path d="M9 4h6l1 2h3v16H5V6h3l1-2z" />
+                <path d="M9 4v2h6V4" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Readiness scorecard</h3>
+              <p>CAF-aligned maturity scoring across assessed dimensions.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- document -->
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3h7l3 3v15H7V3z" />
+                <path d="M14 3v4h4" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Detailed assessment report</h3>
+              <p>Key risks, dependencies, and constraints with recommendations.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- map -->
+              <svg viewBox="0 0 24 24">
+                <path d="M9 18l-6 3V6l6-3l6 3l6-3v15l-6 3l-6-3z" />
+                <path d="M9 3v15" />
+                <path d="M15 6v15" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Target architecture & roadmap</h3>
+              <p>High-level Azure design direction and phased migration plan.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- dollar -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2v20" />
+                <path d="M17 6.5c0-2-2-3.5-5-3.5s-5 1.5-5 3.5S9 10 12 10s5 1.5 5 3.5S15 17 12 17s-5-1.5-5-3.5" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>TCO / cost estimation</h3>
+              <p>Directional Azure cost estimation for compute, storage, and networking.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- checklist -->
+              <svg viewBox="0 0 24 24">
+                <path d="M9 11l2 2l4-4" />
+                <path d="M9 17l2 2l4-4" />
+                <path d="M4 7h3" />
+                <path d="M4 13h3" />
+                <path d="M4 19h3" />
+                <path d="M14 7h6" />
+                <path d="M14 13h6" />
+                <path d="M14 19h6" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Prioritized recommendations</h3>
+              <p>Quick wins, short-term, and long-term actions.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- presentation -->
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16v10H4z" />
+                <path d="M8 20l4-6l4 6" />
+                <path d="M10 8h4" />
+                <path d="M8 10h8" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Executive presentation</h3>
+              <p>Leadership-ready summary of findings, readiness, and next steps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Engagement timeline</h2>
+          <p>A lightweight, efficient plan designed for speed without sacrificing quality.</p>
+        </div>
+
+        <div class="card pad">
+          <div class="timeline">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <b>Week 1</b>
+                <span>Kickoff, data request, access validation, tool setup (4–8 days)</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <b>Week 2</b>
+                <span>Discovery workshops, assessment, dependency mapping (6–8 days)</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <b>Week 3</b>
+                <span>Analysis, readiness scoring, TCO, roadmap & presentation (~4 days)</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">✓</div>
+              <div>
+                <b>Total duration</b>
+                <span>2–4 weeks (depending on scope and data availability)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM (END) -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Request your assessment</h2>
+          <p>Share a few details and we’ll respond with recommended next steps and Azure Accelerate eligibility guidance.</p>
+        </div>
+
+        <div class="card pad">
+          <form class="form" id="leadForm" action="#" method="post" novalidate>
+            <div class="row2">
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" autocomplete="name" placeholder="e.g., Ibrahim Megahed" required />
+              </div>
+              <div>
+                <label for="email">Work email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="company">Company</label>
+                <input id="company" name="company" autocomplete="organization" placeholder="Company name" required />
+              </div>
+              <div>
+                <label for="phone">Phone (optional)</label>
+                <input id="phone" name="phone" autocomplete="tel" placeholder="+966..." />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="focus">Primary focus</label>
+                <select id="focus" name="focus" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>Migration readiness (IaaS/PaaS)</option>
+                  <option>Landing zone & governance</option>
+                  <option>Security & compliance</option>
+                  <option>Cost / TCO & FinOps</option>
+                  <option>Application modernization</option>
+                </select>
+              </div>
+              <div>
+                <label for="timeline">Target timeline</label>
+                <select id="timelineSel" name="timeline" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>0–3 months</option>
+                  <option>3–6 months</option>
+                  <option>6–12 months</option>
+                  <option>12+ months</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="notes">Brief description (optional)</label>
+              <textarea id="notes" name="notes" placeholder="Workloads, scope, constraints, compliance requirements..."></textarea>
+            </div>
+
+            <div class="consent">
+              <input id="consent" name="consent" type="checkbox" required />
+              <div>
+                <b style="display:block; color:var(--text);">Consent</b>
+                <span>I agree to be contacted by ZainTECH regarding this offering.</span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn btnPrimary" type="submit">Submit request</button>
+              <button class="btn btnGhost" type="reset">Reset</button>
+            </div>
+
+            <div style="text-align:center; color:var(--muted); font-size:.9rem;">
+              Eligibility and funding availability are subject to Microsoft approval.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <span>© <span id="year"></span> ZainTECH. All rights reserved.</span>
+        <span>Azure Cloud Readiness Assessment</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("leadForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const requiredIds = ["name","email","company","focus","timelineSel","consent"];
+      for(const id of requiredIds){
+        const el = document.getElementById(id);
+        const ok = (el.type === "checkbox") ? el.checked : (el.value && el.value.trim().length > 0);
+        if(!ok){
+          el.focus({preventScroll:true});
+          el.style.borderColor = "rgba(239,68,68,.7)";
+          el.style.boxShadow = "0 0 0 4px rgba(239,68,68,.12)";
+          setTimeout(()=>{ el.style.borderColor=""; el.style.boxShadow=""; }, 900);
+          return;
+        }
+      }
+      alert("Thank you! Your request has been captured. Replace this alert with a real form submission endpoint.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
