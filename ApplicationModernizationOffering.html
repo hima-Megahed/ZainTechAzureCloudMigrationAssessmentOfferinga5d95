@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Application Modernization Offering | ZainTECH</title>
+  <meta name="description" content="ZainTECH Application Modernization Offering: a focused modernization of one selected application to Azure using App Service or ACI, with clear deliverables and outcomes." />
+
+  <style>
+    :root{
+      --z-primary:#2B5AA8;
+      --z-primary-2:#1F3F7A;
+      --z-accent:#A5DF37;
+
+      --bg:#F6F8FC;
+      --card:#FFFFFF;
+      --text:#0B1220;
+      --muted:#556175;
+      --border: rgba(11,18,32,.10);
+      --shadow: 0 16px 40px rgba(2,6,23,.10);
+
+      --radius:18px;
+      --max:1040px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      --h1: clamp(2.05rem, 4vw, 2.9rem);
+      --h2: 1.35rem;
+      --h3: 1.05rem;
+      --p: 1rem;
+      --s: .92rem;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      line-height:1.55;
+      background:
+        radial-gradient(900px 520px at 12% 0%, rgba(43,90,168,.12), transparent 60%),
+        radial-gradient(900px 520px at 88% 10%, rgba(165,223,55,.10), transparent 55%),
+        var(--bg);
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    header{
+      position:sticky; top:0; z-index:30;
+      background: rgba(255,255,255);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{height:28px; width:auto}
+    nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+      font-size:.92rem;
+      color:var(--muted);
+    }
+    nav a{padding:8px 10px; border-radius:10px;}
+    nav a:hover{background: rgba(43,90,168,.07); color:var(--text);}
+    @media (max-width: 920px){ nav{display:none} }
+
+    section{padding:34px 0}
+    .sectionHead{text-align:center; margin-bottom:16px;}
+    .sectionHead h2{margin:0; font-size:var(--h2); letter-spacing:-0.01em;}
+    .sectionHead p{margin:8px auto 0; color:var(--muted); max-width:76ch; font-size:var(--p);}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .pad{padding:22px}
+    .pad-lg{padding:26px}
+
+    /* HERO */
+    .hero{padding:40px 0 18px}
+    .heroCard{position:relative; overflow:hidden}
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(760px 260px at 15% 12%, rgba(43,90,168,.16), transparent 60%),
+        radial-gradient(680px 240px at 82% 30%, rgba(165,223,55,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .heroInner{position:relative; z-index:2}
+    .heroTopRow{
+      display:flex; align-items:flex-start; justify-content: space-between;
+      gap:18px; flex-wrap:wrap;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(43,90,168,.08);
+      border: 1px solid rgba(43,90,168,.14);
+      color:var(--z-primary);
+      font-weight:900;
+      font-size:.92rem;
+    }
+    h1{
+      margin:12px 0 8px;
+      font-size:var(--h1);
+      line-height:1.08;
+      letter-spacing:-0.02em;
+    }
+    .sub{margin:0; color:var(--muted); font-size:var(--p); max-width:78ch;}
+    .msBig{display:flex; align-items:flex-start; justify-content:flex-end; flex:0 0 auto; margin-top:4px;}
+    .msBig img{
+      height:56px;
+      width:auto;
+      opacity:.96;
+      filter: drop-shadow(0 10px 18px rgba(2,6,23,.10));
+    }
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
+    .chip{
+      font-size:var(--s);
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.65);
+    }
+
+    /* Grids */
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;}
+    @media (max-width: 920px){
+      .grid2,.grid3{grid-template-columns:1fr}
+    }
+
+    /* Icon items */
+    .item{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px;
+      background:#fff;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .ico{
+      width:34px; height:34px;
+      border-radius:14px;
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.8);
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+    }
+    .ico svg{
+      width:18px;
+      height:18px;
+      stroke:#0B1220;
+      stroke-width:1.6;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+    .itemBody{min-width:0}
+    .item h3{margin:0 0 6px; font-size:var(--h3); letter-spacing:-0.01em;}
+    .item p{margin:0; color:var(--muted); font-size:var(--p);}
+
+    .list{margin:10px 0 0; padding:0 0 0 18px; font-size:var(--p);}
+    .list li{margin:8px 0;}
+    .list li span{color:var(--muted);}
+
+    /* Highlight */
+    .highlight{
+      border:1px solid rgba(165,223,55,.35);
+      background:
+        radial-gradient(680px 220px at 18% 30%, rgba(165,223,55,.16), transparent 62%),
+        #fff;
+    }
+    .tag{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(165,223,55,.16);
+      border:1px solid rgba(165,223,55,.28);
+      color:#2A3B12;
+      font-size:.88rem;
+      font-weight:900;
+    }
+
+    /* Timeline */
+    .timeline{display:grid; gap:10px;}
+    .step{
+      display:flex;
+      gap:12px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:#fff;
+      align-items:flex-start;
+    }
+    .num{
+      width:34px; height:34px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, var(--z-primary), var(--z-primary-2));
+      color:#fff;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+    .step b{display:block; font-size:var(--p); margin-top:1px;}
+    .step span{display:block; color:var(--muted); font-size:var(--p); margin-top:4px;}
+
+    /* Form */
+    .form{display:grid; gap:12px; max-width:760px; margin:0 auto;}
+    .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    @media (max-width: 760px){ .row2{grid-template-columns:1fr} }
+
+    label{display:block; font-size:.9rem; font-weight:900; margin-bottom:6px; color:#22304a;}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-family:var(--font);
+      font-size:var(--p);
+      outline:none;
+      transition: box-shadow .12s ease, border-color .12s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(43,90,168,.45);
+      box-shadow: 0 0 0 4px rgba(43,90,168,.12);
+    }
+    textarea{min-height:110px; resize:vertical;}
+    .consent{
+      display:flex; gap:10px; align-items:flex-start;
+      color:var(--muted);
+      font-size:.92rem;
+      margin-top:4px;
+    }
+    .consent input{width:18px; height:18px; margin-top:2px;}
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:6px;}
+    .btn{
+      border:0; cursor:pointer;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:900;
+      font-family:var(--font);
+      font-size:var(--p);
+      transition: transform .12s ease, box-shadow .12s ease;
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btnPrimary{
+      color:#fff;
+      background: linear-gradient(135deg, var(--z-primary), var(--z-primary-2));
+      box-shadow: 0 14px 26px rgba(43,90,168,.22);
+    }
+    .btnGhost{
+      background:#fff;
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+
+    footer{padding:26px 0 46px; color:var(--muted); font-size:.9rem;}
+    .foot{
+      border-top:1px solid var(--border);
+      padding-top:14px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+
+    /* Print friendly */
+    @media print{
+      body{background:#fff !important;}
+      header{position:static !important; backdrop-filter:none !important;}
+      nav{display:none !important;}
+      .card{box-shadow:none !important;}
+      section{padding:18px 0 !important;}
+      .hero{padding:18px 0 8px !important;}
+      .heroCard:before{display:none !important;}
+      .chip{background:#fff !important;}
+      a{color:inherit !important; text-decoration:none !important;}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="top">
+        <div class="brand">
+          <img src="https://kuwaittimes.com/kuwaittimes/uploads/images/2025/07/13/270642.jpg" alt="ZainTECH" />
+        </div>
+        <nav aria-label="Page navigation">
+          <a href="#overview">Overview</a>
+          <a href="#benefits">Key benefits</a>
+          <a href="#scope">In scope</a>
+          <a href="#exclusions">Exclusions</a>
+          <a href="#assumptions">Assumptions</a>
+          <a href="#deliverables">Deliverables</a>
+          <a href="#roles">Roles</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#risks">Risks</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / OVERVIEW -->
+    <section class="hero" id="overview">
+      <div class="wrap">
+        <div class="card heroCard pad-lg">
+          <div class="heroInner">
+            <div class="heroTopRow">
+              <div class="kicker">Application Modernization Offering</div>
+
+              <div class="msBig" aria-label="Microsoft Azure">
+                <img
+                  src="https://learn.microsoft.com/en-us/entra/identity-platform/media/howto-add-branding-in-apps/ms-symbollockup_mssymbol_19.svg"
+                  alt="Microsoft"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <h1>Modernize one application on Azure to demonstrate measurable value fast</h1>
+            <p class="sub">
+              A focused, no-cost engagement to accelerate digital transformation by modernizing <b>one selected application</b> on Microsoft Azure.
+              We demonstrate tangible business and technical outcomes such as improved scalability, faster deployment, cost optimization,
+              and operational agility, supported by clear architecture and practical deliverables.
+            </p>
+
+            <div class="chips" aria-label="Quick highlights">
+              <span class="chip">No-cost initiative (ZainTECH absorbed)</span>
+              <span class="chip">1 application</span>
+              <span class="chip">Approx. 10 man-days</span>
+              <span class="chip">App Service or ACI</span>
+              <span class="chip">Optional CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY BENEFITS -->
+    <section id="benefits">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Key benefits</h2>
+          <p>Outcomes that help you validate modernization value and set a foundation for scale.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- rocket -->
+              <svg viewBox="0 0 24 24">
+                <path d="M5 14c-1 2-1 5-1 5s3 0 5-1" />
+                <path d="M9 15l-2 2" />
+                <path d="M14 3c4 1 7 4 7 8c0 5-4 9-9 9c-4 0-8-3-9-7c1-5 6-9 11-10z" />
+                <path d="M14 7h.01" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Faster time to value</h3>
+              <p>Deliver a working modernization outcome quickly to build momentum and stakeholder buy-in.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- scale -->
+              <svg viewBox="0 0 24 24">
+                <path d="M4 20V8" />
+                <path d="M8 20V4" />
+                <path d="M12 20v-6" />
+                <path d="M16 20v-9" />
+                <path d="M20 20V10" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Cloud scalability</h3>
+              <p>Validate an Azure-ready deployment model that supports growth and operational agility.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- cost -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2v20" />
+                <path d="M17 6.5c0-2-2-3.5-5-3.5s-5 1.5-5 3.5S9 10 12 10s5 1.5 5 3.5S15 17 12 17s-5-1.5-5-3.5" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Cost optimization</h3>
+              <p>Use a right-sized Azure model to inform future rollout and budgeting.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px" class="card pad highlight">
+          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:10px;">
+            <span class="tag">No-cost modernization of 1 selected app</span>
+            <span class="tag">Remote or hybrid delivery</span>
+            <span class="tag">Azure-native patterns</span>
+          </div>
+
+          <div class="grid2">
+            <div class="item">
+              <div class="ico" aria-hidden="true">
+                <!-- deploy -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 18a4 4 0 1 1 .6-7.95A5 5 0 0 1 17 9.5a3.5 3.5 0 1 1 1 8.5H7z" />
+                  <path d="M12 16V11" />
+                  <path d="M10 13l2-2l2 2" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Deployment models</h3>
+                <p>Deploy via <b>Azure App Service</b> (Web/API) or <b>Azure Container Instances</b> (Docker-based).</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="ico" aria-hidden="true">
+                <!-- pipeline -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 7h6" />
+                  <path d="M12 7l6 10" />
+                  <path d="M6 17h12" />
+                  <path d="M6 7v10" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Optional lightweight CI/CD</h3>
+                <p>Starter pipeline with Azure DevOps or GitHub Actions using the client repository.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- IN SCOPE -->
+    <section id="scope">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>In scope</h2>
+          <p>What the engagement covers for the selected application and supporting components.</p>
+        </div>
+
+        <div class="card pad">
+          <div class="grid2">
+            <div class="item" style="align-items:flex-start;">
+              <div class="ico" aria-hidden="true">
+                <!-- package -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 7l8-4l8 4l-8 4l-8-4z" />
+                  <path d="M4 7v10l8 4v-10" />
+                  <path d="M20 7v10l-8 4" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Application and platform coverage</h3>
+                <ul class="list">
+                  <li><b>Application types</b>: Web apps, APIs, background workers, frontends</li>
+                  <li><b>Target platforms</b>: Azure App Service, Azure Container Instances (ACI)</li>
+                  <li><b>Database</b>: Small dataset migration to Azure SQL Database or MySQL Flexible Server</li>
+                  <li><b>Outputs</b>: Target architecture diagram and modernization assessment report</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item" style="align-items:flex-start;">
+              <div class="ico" aria-hidden="true">
+                <!-- code -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 18l-6-6l6-6" />
+                  <path d="M15 6l6 6l-6 6" />
+                  <path d="M13 5l-2 14" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Supported stacks</h3>
+                <ul class="list">
+                  <li>.NET Core / .NET MVC</li>
+                  <li>Java (Spring Boot)</li>
+                  <li>Python (Flask / Django)</li>
+                  <li>PHP (Laravel)</li>
+                  <li>Node.js (Express)</li>
+                  <li>React / Angular / Vue.js</li>
+                </ul>
+                <p style="margin-top:10px; color:var(--muted);">
+                  Containerization is supported for modern runtimes: .NET Core, Java, Python, Node.js, PHP.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCLUSIONS -->
+    <section id="exclusions">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Out of scope / exclusions</h2>
+          <p>Items not included in this offering (can be planned as a follow-on phase).</p>
+        </div>
+
+        <div class="grid2">
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- x-circle -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22a10 10 0 1 0 0-20a10 10 0 0 0 0 20z" />
+                <path d="M9 9l6 6" />
+                <path d="M15 9l-6 6" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Modernization exclusions</h3>
+              <ul class="list">
+                <li>Multi-application or multi-tenant work (only one selected app)</li>
+                <li>Non-web workloads (desktop, mainframe, thick clients)</li>
+                <li>Complex refactoring or multi-service decomposition</li>
+                <li>Performance optimization beyond basic validation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- shield-off -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3l8 4v6c0 5-3 9-8 10C7 21 4 17 4 13V7l8-4z" />
+                <path d="M5 5l14 14" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Security and operations exclusions</h3>
+              <ul class="list">
+                <li>Integration with on-prem authentication (ADFS/SAML/hybrid join)</li>
+                <li>Security hardening, DR setup, or managed services</li>
+                <li>Full dependency mapping</li>
+                <li>Third-party license remediation</li>
+                <li>Advanced DevOps automation or detailed pipeline design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASSUMPTIONS -->
+    <section id="assumptions">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Assumptions</h2>
+          <p>Constraints used to keep the engagement fast, focused, and low-friction.</p>
+        </div>
+
+        <div class="card pad">
+          <div class="grid2">
+            <div class="item" style="align-items:flex-start;">
+              <div class="ico" aria-hidden="true">
+                <!-- sliders -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 21v-7" />
+                  <path d="M4 10V3" />
+                  <path d="M12 21v-9" />
+                  <path d="M12 8V3" />
+                  <path d="M20 21v-5" />
+                  <path d="M20 12V3" />
+                  <path d="M2 10h4" />
+                  <path d="M10 8h4" />
+                  <path d="M18 16h4" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Application sizing</h3>
+                <ul class="list">
+                  <li>1 small-to-medium web/API app (up to 3 logical components)</li>
+                  <li>Up to 500 MB including dependencies</li>
+                  <li>Up to 2 external APIs/integrations</li>
+                  <li>Up to 10 GB total data (migratable over VPN)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item" style="align-items:flex-start;">
+              <div class="ico" aria-hidden="true">
+                <!-- key -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 2l-2 2" />
+                  <path d="M19 4l-2 2" />
+                  <path d="M14.5 7.5a4.5 4.5 0 1 1-6.4 6.4L2 20l2 2l6.1-6.1" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Access and readiness</h3>
+                <ul class="list">
+                  <li>Client provides source code access and required credentials</li>
+                  <li>Client provides Azure subscription for deployment and testing</li>
+                  <li>VPN or ExpressRoute available if DB migration is needed</li>
+                  <li>Existing code builds successfully in current environment</li>
+                  <li>Dependencies are documented and customer has rights to modify source</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px" class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- info -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22a10 10 0 1 0 0-20a10 10 0 0 0 0 20z" />
+                <path d="M12 10v6" />
+                <path d="M12 7h.01" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Commercial note</h3>
+              <p>This offering covers ZainTECH effort only. Azure consumption and third-party costs (if any) remain the customer responsibility.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section id="deliverables">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>What we deliver</h2>
+          <p>Outputs you can reuse to scale modernization across the portfolio.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- cloud-upload -->
+              <svg viewBox="0 0 24 24">
+                <path d="M7 18a4 4 0 1 1 .6-7.95A5 5 0 0 1 17 9.5a3.5 3.5 0 1 1 1 8.5H7z" />
+                <path d="M12 16V10" />
+                <path d="M9.5 12.5L12 10l2.5 2.5" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Modernized and deployed app</h3>
+              <p>Functional deployment of one application in Azure App Service or ACI.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- architecture -->
+              <svg viewBox="0 0 24 24">
+                <path d="M4 6h6v6H4z" />
+                <path d="M14 6h6v6h-6z" />
+                <path d="M4 14h6v6H4z" />
+                <path d="M14 14h6v6h-6z" />
+                <path d="M10 9h4" />
+                <path d="M10 17h4" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Target architecture diagram</h3>
+              <p>App, database, connectivity, security baseline, and optional CI/CD view.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- report -->
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3h10v18H7z" />
+                <path d="M9 7h6" />
+                <path d="M9 11h6" />
+                <path d="M9 15h4" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Modernization assessment report</h3>
+              <p>Findings, steps performed, constraints, risks, and next-step recommendations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROLES -->
+    <section id="roles">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Roles and responsibilities</h2>
+          <p>A simple split to ensure speed and clarity during delivery.</p>
+        </div>
+
+        <div class="grid2">
+          <div class="card pad">
+            <div class="item" style="border:none; padding:0;">
+              <div class="ico" aria-hidden="true">
+                <!-- users -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M16 11a3 3 0 1 0-6 0a3 3 0 0 0 6 0z" />
+                  <path d="M6 20a6 6 0 0 1 12 0" />
+                  <path d="M8 8a2.5 2.5 0 1 0-5 0a2.5 2.5 0 0 0 5 0z" />
+                  <path d="M1.5 20a5.5 5.5 0 0 1 7-4" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>ZainTECH</h3>
+                <ul class="list">
+                  <li>Modernization assessment and target design</li>
+                  <li>Build packaging and deployment to App Service or ACI</li>
+                  <li>DB migration for a small dataset (if applicable)</li>
+                  <li>Basic validation and knowledge transfer</li>
+                  <li>Final report and architecture diagram</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card pad">
+            <div class="item" style="border:none; padding:0;">
+              <div class="ico" aria-hidden="true">
+                <!-- key -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 2l-2 2" />
+                  <path d="M19 4l-2 2" />
+                  <path d="M14.5 7.5a4.5 4.5 0 1 1-6.4 6.4L2 20l2 2l6.1-6.1" />
+                </svg>
+              </div>
+              <div class="itemBody">
+                <h3>Customer</h3>
+                <ul class="list">
+                  <li>Provide source code access, credentials, and SME support</li>
+                  <li>Provide Azure subscription and approvals for deployments</li>
+                  <li>Provide VPN/ExpressRoute access if DB migration is needed</li>
+                  <li>Confirm functional testing and acceptance criteria</li>
+                  <li>Own Azure consumption charges and licensing</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Engagement timeline</h2>
+          <p>A lightweight plan designed for speed without sacrificing quality.</p>
+        </div>
+
+        <div class="card pad">
+          <div class="timeline">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <b>Kickoff and discovery (Days 1-2)</b>
+                <span>Confirm scope, validate access, collect code and environment details, and identify quick wins.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <b>Modernization plan and design (Days 3-4)</b>
+                <span>Choose target platform (App Service or ACI), define target architecture, and confirm deployment approach.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <b>Build and deploy (Days 5-8)</b>
+                <span>Package the application, configure Azure resources, deploy, and optionally implement a starter CI/CD pipeline.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">4</div>
+              <div>
+                <b>Validate and handover (Days 9-10)</b>
+                <span>Basic testing, walkthrough session, and finalization of report and architecture diagram.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">✓</div>
+              <div>
+                <b>Total effort</b>
+                <span>Approximately 10 man-days (may vary based on access readiness and application complexity).</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RISKS -->
+    <section id="risks">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Key risks and dependencies</h2>
+          <p>Typical factors that can impact timeline or feasibility for a quick modernization.</p>
+        </div>
+
+        <div class="grid2">
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- link -->
+              <svg viewBox="0 0 24 24">
+                <path d="M10 13a5 5 0 0 0 7.1 0l1.4-1.4a5 5 0 0 0-7.1-7.1L10 4.9" />
+                <path d="M14 11a5 5 0 0 0-7.1 0L5.5 12.4a5 5 0 0 0 7.1 7.1L14 19.1" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Access and approvals</h3>
+              <p>Delays in repo access, secrets, networking approvals, or Azure permissions can extend delivery.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- puzzle -->
+              <svg viewBox="0 0 24 24">
+                <path d="M8 4h4a2 2 0 0 1 2 2v2h2a2 2 0 1 1 0 4h-2v2a2 2 0 0 1-2 2H8v-2a2 2 0 1 0-4 0v2H2V8h2a2 2 0 1 0 0-4H2V2h6z" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Hidden dependencies</h3>
+              <p>Undocumented integrations, legacy libraries, or on-prem constraints may require additional remediation.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- database -->
+              <svg viewBox="0 0 24 24">
+                <ellipse cx="12" cy="5" rx="7" ry="3" />
+                <path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5" />
+                <path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Data constraints</h3>
+              <p>Data volume above the assumed limits or strict connectivity controls can shift the approach and duration.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ico" aria-hidden="true">
+              <!-- shield -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3l8 4v6c0 5-3 9-8 10C7 21 4 17 4 13V7l8-4z" />
+                <path d="M9 13l2 2l4-5" />
+              </svg>
+            </div>
+            <div class="itemBody">
+              <h3>Security requirements</h3>
+              <p>Advanced security hardening, private endpoints, or compliance requirements may be handled as a follow-on phase.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>Request the offering</h2>
+          <p>Share a few details and we will respond with the next steps, application selection guidance, and a delivery plan.</p>
+        </div>
+
+        <div class="card pad">
+          <form class="form" id="leadForm" action="#" method="post" novalidate>
+            <div class="row2">
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" autocomplete="name" placeholder="e.g., Ibrahim Megahed" required />
+              </div>
+              <div>
+                <label for="email">Work email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="company">Company</label>
+                <input id="company" name="company" autocomplete="organization" placeholder="Company name" required />
+              </div>
+              <div>
+                <label for="stack">Application stack</label>
+                <select id="stack" name="stack" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>.NET</option>
+                  <option>Java</option>
+                  <option>Python</option>
+                  <option>PHP</option>
+                  <option>Node.js</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="target">Preferred target</label>
+                <select id="target" name="target" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>Azure App Service</option>
+                  <option>Azure Container Instances (ACI)</option>
+                  <option>Not sure</option>
+                </select>
+              </div>
+              <div>
+                <label for="timelineSel">Target timeline</label>
+                <select id="timelineSel" name="timeline" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>Immediate</option>
+                  <option>Next 30 days</option>
+                  <option>1-3 months</option>
+                  <option>3+ months</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="notes">Brief description (optional)</label>
+              <textarea id="notes" name="notes" placeholder="App purpose, dependencies, DB type, constraints, and any compliance needs..."></textarea>
+            </div>
+
+            <div class="consent">
+              <input id="consent" name="consent" type="checkbox" required />
+              <div>
+                <b style="display:block; color:var(--text);">Consent</b>
+                <span>I agree to be contacted by ZainTECH regarding this offering.</span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn btnPrimary" type="submit">Submit request</button>
+              <button class="btn btnGhost" type="reset">Reset</button>
+            </div>
+
+            <div style="text-align:center; color:var(--muted); font-size:.9rem;">
+              Replace the demo alert with a real submission endpoint (form action or API).
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <span>© <span id="year"></span> ZainTECH. All rights reserved.</span>
+        <span>Application Modernization Offering</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("leadForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const requiredIds = ["name","email","company","stack","target","timelineSel","consent"];
+      for(const id of requiredIds){
+        const el = document.getElementById(id);
+        const ok = (el.type === "checkbox") ? el.checked : (el.value && el.value.trim().length > 0);
+        if(!ok){
+          el.focus({preventScroll:true});
+          el.style.borderColor = "rgba(239,68,68,.7)";
+          el.style.boxShadow = "0 0 0 4px rgba(239,68,68,.12)";
+          setTimeout(()=>{ el.style.borderColor=""; el.style.boxShadow=""; }, 900);
+          return;
+        }
+      }
+
+      alert("Thank you. Your request has been captured. Replace this alert with a real form submission endpoint.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
